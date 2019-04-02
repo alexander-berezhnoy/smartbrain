@@ -17,7 +17,7 @@ class Register extends React.Component {
   onPasswordChange = event => {
     this.setState({ password: event.target.value });
   };
-
+  npm;
   onNameChange = event => {
     this.setState({ name: event.target.value });
   };
@@ -32,17 +32,12 @@ class Register extends React.Component {
         name: this.state.name
       })
     })
-      .then(response => {
-        response.json();
-      })
+      .then(response => response.json())
       .then(user => {
-        console.log(user);
-        // if (user.id) {
-        //   this.props.loadUser(user);
-        //   this.props.onRouteChange("home");
-        // }
-        this.props.onRouteChange("home");
-        // this.props.loadUser(user);
+        if (user) {
+          this.props.loadUser(user);
+          this.props.onRouteChange("home");
+        }
       });
   };
 
